@@ -18,21 +18,6 @@ module.exports = {
   <Button>Test</Button>
   `,
   webpackConfig: () => ({
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          styles: {
-            name: 'styles',
-            test: /\.css$/,
-            chunks: 'all',
-            enforce: true
-          }
-        }
-      }
-    },
-    devServer: {
-      publicPath: '/public/playroom/thematic/'
-    },
     plugins: [
       new TreatPlugin({
         outputLoaders: [MiniCssExtractPlugin.loader]
@@ -76,14 +61,9 @@ module.exports = {
           use: [MiniCssExtractPlugin.loader, 'css-loader']
         },
         {
-          test: /\.(otf|ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+          test: /\.(jpe?g|png|gif|svg|ico|otf|ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
           exclude: /node_modules\/(?!@(oceanblue|anz))/,
-          use: 'file-loader'
-        },
-        {
-          test: /\.(jpe?g|png|gif|svg|ico)$/i,
-          exclude: /node_modules\/(?!@(oceanblue|anz))/,
-          use: 'file-loader'
+          type: 'asset'
         }
       ]
     },
