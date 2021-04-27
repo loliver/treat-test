@@ -1,4 +1,4 @@
-import { themes } from '@oceanblue/design-tokens/build/js/design-tokens.treat.js'
+import { themes } from './design-tokens/design-tokens.treat.js'
 
 const anzx = themes.anzx
 const anzxdark = themes.anzxdark
