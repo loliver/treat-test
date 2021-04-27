@@ -11,12 +11,25 @@ module.exports = {
   themes: './playroom/thematic/themes.ts',
   widths: [360, 480, 768, 960, 1164, 1366],
   typeScriptFiles: [
-    './node_modules/@oceanblue/**/*.{ts,tsx}'
+    './node_modules/@oceanblue/**/*.{ts,tsx}',
+    './playroom/**/*.{ts,tsx}'
   ],
   exampleCode: `
   <Button>Test</Button>
   `,
   webpackConfig: () => ({
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.css$/,
+            chunks: 'all',
+            enforce: true
+          }
+        }
+      }
+    },
     devServer: {
       publicPath: '/public/playroom/thematic/'
     },
@@ -25,6 +38,7 @@ module.exports = {
         outputLoaders: [MiniCssExtractPlugin.loader]
       }),
       new MiniCssExtractPlugin({
+        ignoreOrder: true,
         filename: '[contenthash:8].css'
       })
     ],
@@ -39,7 +53,7 @@ module.exports = {
               presets: [
                 '@babel/react',
                 ['@babel/preset-typescript', {
-                  configFile: path.resolve('./node_modules/@oceanblue/stddev/config/tsconfig.json'),
+                  configFile: path.resolve('./tsconfig.json'),
                   isTSX: true,
                   allExtensions:true,
                   allowDeclareFields: true

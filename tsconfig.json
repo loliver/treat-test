@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["DOM", "es2015"],
+    "strict": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ]
+  },
+  "include": ["./playroom/**/*"],
+  "exclude": ["node_modules", "./playroom/**/*.test.tsx", "./playroom/**/*.stories.tsx"],
+  "allowTsInNodeModules": true
+}
